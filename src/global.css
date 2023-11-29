@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  #root {
+    --mobile-side-padding: 1.5rem;
+
+    display: grid;
+    grid-template-columns:
+      [full-width-start]
+      var(--mobile-side-padding)
+      [content-start]
+      1fr
+      [content-end]
+      var(--mobile-side-padding)
+      [full-width-end];
+  }
+}
+
+@layer utilities {
+  .full-width {
+    grid-column: full-width;
+  }
+
+  .content {
+    grid-column: content;
+  }
+}

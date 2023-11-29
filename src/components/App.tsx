@@ -1,5 +1,11 @@
+import Header from "./header/Header";
+
 const App = () => {
-  return <div className="bg-red-400">App</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default App;
