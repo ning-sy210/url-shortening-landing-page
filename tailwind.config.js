@@ -13,7 +13,21 @@ export default {
       sans: ["Poppins", "sans-serif"],
     },
     fontSize: {
-      body: "1.125rem", // 18px
+      "mobile-body": [
+        "1.125rem", // 18px
+        {
+          fontWeight: "500",
+          lineHeight: "1.875rem",
+        },
+      ],
+      "mobile-h1": [
+        "2.625rem", // 42px
+        {
+          fontWeight: "700",
+          lineHeight: "3rem",
+          letterSpacing: "-0.07rem",
+        },
+      ],
     },
     fontWeight: {
       medium: "500",
@@ -30,6 +44,9 @@ export default {
         "neutral-2": "hsl(257, 7%, 63%)",
         "neutral-3": "hsl(255, 11%, 22%)",
         "neutral-4": "hsl(260, 8%, 14%)",
+      },
+      gridTemplateColumns: {
+        subgrid: "subgrid",
       },
     },
   },

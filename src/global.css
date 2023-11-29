@@ -4,6 +4,8 @@
 
 @layer components {
   #root {
+    @apply text-mobile-body;
+
     --mobile-side-padding: 1.5rem;
 
     display: grid;
@@ -15,6 +17,12 @@
       [content-end]
       var(--mobile-side-padding)
       [full-width-end];
+  }
+
+  .child-grid {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
   }
 }
 
