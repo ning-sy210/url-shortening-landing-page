@@ -13,6 +13,7 @@ export default {
       sans: ["Poppins", "sans-serif"],
     },
     fontSize: {
+      default: "1rem",
       "mobile-body": [
         "1.125rem", // 18px
         {
@@ -47,6 +48,10 @@ export default {
       },
       gridTemplateColumns: {
         subgrid: "subgrid",
+      },
+      backgroundImage: {
+        // TODO: find out why below is not working
+        "shorten-link": "url('./src/assets/images/bg-shorten-mobile.svg')",
       },
     },
   },

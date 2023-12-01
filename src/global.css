@@ -24,6 +24,11 @@
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
   }
+
+  .cta-btn {
+    @apply bg-primary-1;
+    color: white;
+  }
 }
 
 @layer utilities {
