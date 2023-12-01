@@ -2,7 +2,7 @@ import HeroImg from "../../assets/images/illustration-working.svg";
 
 const HeroSection = () => {
   return (
-    <section className="child-grid text-center">
+    <section className="child-grid">
       <img
         src={HeroImg}
         alt="working illustration"
@@ -29,7 +29,7 @@ const HeroSection = () => {
           placeholder="Shorten a link here..."
           className="rounded-md px-4 text-default"
         />
-        <button type="button" className="cta-btn rounded-md font-bold">
+        <button type="button" className="cta-btn rounded-md">
           Shorten It!
         </button>
       </div>

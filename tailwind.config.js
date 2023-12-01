@@ -14,6 +14,13 @@ export default {
     },
     fontSize: {
       default: "1rem",
+      "mobile-p-sm": [
+        "0.9375rem", // 15px
+        {
+          fontWeight: "500",
+          lineHeight: "1.625rem",
+        },
+      ],
       "mobile-body": [
         "1.125rem", // 18px
         {
@@ -27,6 +34,20 @@ export default {
           fontWeight: "700",
           lineHeight: "3rem",
           letterSpacing: "-0.07rem",
+        },
+      ],
+      "mobile-h2": [
+        "1.75rem", // 28px
+        {
+          fontWeight: "700",
+          lineHeight: "2.5rem",
+          letterSpacing: "-0.05rem",
+        },
+      ],
+      "mobile-h3": [
+        "1.375rem", // 22px
+        {
+          fontWeight: "700",
         },
       ],
     },
@@ -52,6 +73,9 @@ export default {
       backgroundImage: {
         // TODO: find out why below is not working
         "shorten-link": "url('./src/assets/images/bg-shorten-mobile.svg')",
+      },
+      padding: {
+        "mobile-section-connector": "10.5rem",
       },
     },
   },

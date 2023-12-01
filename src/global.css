@@ -8,6 +8,7 @@
 
     --mobile-side-padding: 1.5rem;
 
+    text-align: center;
     display: grid;
     grid-template-columns:
       [full-width-start]
@@ -27,6 +28,7 @@
 
   .cta-btn {
     @apply bg-primary-1;
+    @apply font-bold;
     color: white;
   }
 }
