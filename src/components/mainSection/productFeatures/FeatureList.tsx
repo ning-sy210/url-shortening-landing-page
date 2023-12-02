@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import BrandRecognitionIcon from "../../../assets/images/icon-brand-recognition.svg";
 import DetailedRecordsIcon from "../../../assets/images/icon-detailed-records.svg";
 import FullyCustomizableIcon from "../../../assets/images/icon-fully-customizable.svg";
@@ -30,17 +31,16 @@ const FeatureList = () => {
   return (
     <div className="child-grid mt-[5.5rem]">
       {features.map((feature, i) => (
-        <>
+        <Fragment key={feature.heading}>
           {i !== 0 && (
             <div className="content justify-self-center w-2 h-[5.75rem] bg-primary-1"></div>
           )}
           <FeatureCard
-            key={feature.heading}
             svgIcon={feature.svgIcon}
             heading={feature.heading}
             desc={feature.desc}
           />
-        </>
+        </Fragment>
       ))}
     </div>
   );
