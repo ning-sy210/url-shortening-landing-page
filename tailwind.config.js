@@ -50,8 +50,15 @@ export default {
           fontWeight: "700",
         },
       ],
+      "mobile-h4": [
+        "0.9375rem", // 15px
+        {
+          fontWeight: "700",
+        },
+      ],
     },
     fontWeight: {
+      normal: "300",
       medium: "500",
       bold: "700",
     },
