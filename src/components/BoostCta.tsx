@@ -5,7 +5,7 @@ const BoostCta = () => {
       <h2 className="text-mobile-h2 text-white">Boost your links today</h2>
       <button
         type="button"
-        className="cta-btn mt-4 px-10 py-[13px] rounded-full text-[1.25rem]"
+        className="cta-btn mt-4 px-10 py-[0.8125rem] rounded-full text-[1.25rem]"
       >
         Get Started
       </button>

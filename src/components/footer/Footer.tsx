@@ -88,9 +88,9 @@ const Footer = () => {
         ))}
       </ul>
 
-      <ul className="content flex items-center gap-x-6 mt-[44px]">
+      <ul className="content flex items-center gap-x-6 mt-11">
         <li>
-          <a href="https://www.facebook.com/">
+          <a href="https://www.facebook.com/" title="facebook">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path
                 fill="#FFF"
@@ -100,7 +100,7 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a href="https://twitter.com/">
+          <a href="https://twitter.com/" title="twitter">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20">
               <path
                 fill="#FFF"
@@ -110,7 +110,7 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a href="https://www.pinterest.com/">
+          <a href="https://www.pinterest.com/" title="pin interest">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path
                 fill="#FFF"
@@ -120,7 +120,7 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a href="https://www.instagram.com">
+          <a href="https://www.instagram.com" title="instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path
                 fill="#FFF"

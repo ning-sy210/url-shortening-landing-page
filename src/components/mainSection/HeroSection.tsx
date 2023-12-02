@@ -23,8 +23,12 @@ const HeroSection = () => {
       </button>
 
       {/* TODO: bg-shorten-link (background-image) not working for some reason*/}
-      <div className="mt-2 relative top-20 h-40 content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid gap-y-4">
+      <form
+        name="shorten-link-form"
+        className="mt-2 relative top-20 h-40 content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid gap-y-4"
+      >
         <input
+          name="url"
           type="url"
           placeholder="Shorten a link here..."
           className="rounded-md px-4 text-default"
@@ -32,7 +36,7 @@ const HeroSection = () => {
         <button type="button" className="cta-btn rounded-md">
           Shorten It!
         </button>
-      </div>
+      </form>
     </section>
   );
 };
