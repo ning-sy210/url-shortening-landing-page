@@ -2,7 +2,7 @@ import HeroImg from "../../assets/images/illustration-working.svg";
 
 const HeroSection = () => {
   return (
-    <section className="child-grid">
+    <section className="child-grid pb-[10.5rem]">
       <img
         src={HeroImg}
         alt="working illustration"
@@ -17,26 +17,10 @@ const HeroSection = () => {
       </p>
       <button
         type="button"
-        className="content justify-self-center mt-[1.875rem] px-10 py-[13px] rounded-full bg-primary-1 text-white font-bold tracking-wider"
+        className="content justify-self-center mt-[1.875rem] px-10 py-[0.8125rem] rounded-full bg-primary-1 text-white font-bold tracking-wider"
       >
         Get Started
       </button>
-
-      {/* TODO: bg-shorten-link (background-image) not working for some reason*/}
-      <form
-        name="shorten-link-form"
-        className="mt-2 relative top-20 h-40 content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid gap-y-4"
-      >
-        <input
-          name="url"
-          type="url"
-          placeholder="Shorten a link here..."
-          className="rounded-md px-4 text-default"
-        />
-        <button type="button" className="cta-btn rounded-md">
-          Shorten It!
-        </button>
-      </form>
     </section>
   );
 };

@@ -81,9 +81,6 @@ export default {
         // TODO: find out why below is not working
         "shorten-link": "url('./src/assets/images/bg-shorten-mobile.svg')",
       },
-      padding: {
-        "mobile-section-connector": "10.5rem",
-      },
     },
   },
   plugins: [],

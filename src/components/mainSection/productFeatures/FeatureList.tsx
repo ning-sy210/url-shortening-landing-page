@@ -29,12 +29,14 @@ const features: FeatureCardType[] = [
 
 const FeatureList = () => {
   return (
-    <div className="child-grid mt-[5.5rem]">
+    <div className="mt-[5.5rem] grid">
       {features.map((feature, i) => (
         <Fragment key={feature.heading}>
+          {/* card connector */}
           {i !== 0 && (
-            <div className="content justify-self-center w-2 h-[5.75rem] bg-primary-1"></div>
+            <div className="justify-self-center w-2 h-[5.75rem] bg-primary-1"></div>
           )}
+
           <FeatureCard
             svgIcon={feature.svgIcon}
             heading={feature.heading}
@@ -51,7 +53,7 @@ const FeatureCard = ({ svgIcon, heading, desc }: FeatureCardType) => {
 
   return (
     <section
-      className={`relative content grid justify-items-center bg-white rounded-md px-8 pt-[4.75rem] ${paddingBottom}`}
+      className={`relative grid justify-items-center bg-white rounded-md px-8 pt-[4.75rem] ${paddingBottom}`}
     >
       <div className="absolute -top-11 bg-primary-2 rounded-full w-[5.5rem] h-[5.5rem] grid place-items-center">
         <img src={svgIcon} alt={`${heading} icon`} className="" />
