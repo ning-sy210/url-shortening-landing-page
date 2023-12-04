@@ -9,6 +9,7 @@ const ShortenUrlInputSection = () => {
   const [loading, setLoading] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  // TODO: populate data from localStorage
   const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlHistoryType[]>(
     []
   );
@@ -70,6 +71,9 @@ const ShortenUrlInputSection = () => {
       shortUrl: `1pt.co/${res.short}`,
     };
 
+    // TODO: populate data from localStorage
+    // TODO: handle error from fetch call
+    // TODO: abort fetch calls that take too long to resolve
     if (shortenedUrls.length > 0 && shortenedUrls[0].isNew) {
       const prevUrl = { ...shortenedUrls[0] };
       prevUrl.isNew = false;
@@ -78,6 +82,7 @@ const ShortenUrlInputSection = () => {
       setShortenedUrls((prev) => [newShortenedUrl, ...prev]);
     }
     setLoading(false);
+    setUrlInput("");
   }
 
   return (
