@@ -1,19 +1,21 @@
 import { useState } from "react";
 
-type ShortenedUrlHistoryType = {
+export type ShortenedUrlHistoryType = {
+  isNew?: boolean;
   longUrl: string;
-  shortenedUrl: string;
+  shortUrl: string;
 };
 
 const ShortenedUrlHistory = ({
+  isNew,
   longUrl,
-  shortenedUrl,
+  shortUrl,
 }: ShortenedUrlHistoryType) => {
   const [copied, setCopied] = useState(false);
   const copiedStateClassnames = copied ? "bg-primary-2" : "";
 
   function onCopyLinkClick() {
-    navigator.clipboard.writeText(shortenedUrl).then(() => {
+    navigator.clipboard.writeText(shortUrl).then(() => {
       setCopied(true);
       setTimeout(() => {
         setCopied(false);
@@ -23,14 +25,21 @@ const ShortenedUrlHistory = ({
 
   return (
     <div className="content grid rounded text-start bg-white">
-      <p
-        title={longUrl}
-        className="px-4 pt-3 pb-[0.375rem] border-b-[1px] border-solid border-gray-200 text-default overflow-hidden text-ellipsis"
-      >
-        {longUrl}
-      </p>
+      <div className="flex items-center px-4 pt-3 pb-[0.375rem] border-b-[1px] border-solid border-gray-200">
+        <p
+          title={longUrl}
+          className="text-default overflow-hidden text-ellipsis"
+        >
+          {longUrl}
+        </p>
+        {isNew && (
+          <span className="ml-4 px-[0.375rem] py-1 rounded-md bg-secondary-1 text-white text-[12px] font-bold leading-none">
+            new!
+          </span>
+        )}
+      </div>
       <div className="px-4 pt-3 pb-4 grid">
-        <p className="text-default text-primary-1">{shortenedUrl}</p>
+        <p className="text-default text-primary-1">{shortUrl}</p>
         <button
           type="button"
           onClick={onCopyLinkClick}

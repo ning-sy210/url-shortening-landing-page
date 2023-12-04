@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { SyncLoader } from "react-spinners";
-import ShortenedUrlHistory from "./ShortenedUrlHistory";
 
-type ShortenedUrlType = {
-  long: string;
-  short: string;
-};
+import ShortenedUrlHistory, {
+  ShortenedUrlHistoryType,
+} from "./ShortenedUrlHistory";
 
 const ShortenUrlInputSection = () => {
   const [loading, setLoading] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlType[]>([]);
+  const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlHistoryType[]>(
+    []
+  );
 
   const invalidInputClassnames = errorMessage
     ? [
@@ -64,17 +64,26 @@ const ShortenUrlInputSection = () => {
       method: "POST",
     });
     const res = await response.json();
-    const newShortenedUrl: ShortenedUrlType = {
-      long: urlInput,
-      short: `1pt.co/${res.short}`,
+    const newShortenedUrl: ShortenedUrlHistoryType = {
+      isNew: true,
+      longUrl: urlInput,
+      shortUrl: `1pt.co/${res.short}`,
     };
-    setShortenedUrls((prev) => [newShortenedUrl, ...prev]);
+
+    if (shortenedUrls.length > 0 && shortenedUrls[0].isNew) {
+      const prevUrl = { ...shortenedUrls[0] };
+      prevUrl.isNew = false;
+      setShortenedUrls((prev) => [newShortenedUrl, prevUrl, ...prev.slice(1)]);
+    } else {
+      setShortenedUrls((prev) => [newShortenedUrl, ...prev]);
+    }
     setLoading(false);
   }
 
   return (
     <div className="full-width child-grid relative -top-20 mb-2 grid gap-y-6">
       {/* TODO: bg-shorten-link (background-image) not working for some reason */}
+      {/* TODO: refactor out form into its own component to prevent unnecessary rerenders */}
       <form
         name="shorten-link-form"
         className="content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid"
@@ -115,9 +124,10 @@ const ShortenUrlInputSection = () => {
 
       {shortenedUrls.map((url) => (
         <ShortenedUrlHistory
-          key={url.short}
-          longUrl={url.long}
-          shortenedUrl={url.short}
+          key={url.shortUrl}
+          isNew={url.isNew}
+          longUrl={url.longUrl}
+          shortUrl={url.shortUrl}
         />
       ))}
     </div>
