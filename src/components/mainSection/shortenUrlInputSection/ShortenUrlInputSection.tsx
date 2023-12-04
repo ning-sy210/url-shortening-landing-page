@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SyncLoader } from "react-spinners";
 import ShortenedUrlHistory from "./ShortenedUrlHistory";
 
 type ShortenedUrlType = {
@@ -7,6 +8,7 @@ type ShortenedUrlType = {
 };
 
 const ShortenUrlInputSection = () => {
+  const [loading, setLoading] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlType[]>([]);
@@ -57,6 +59,7 @@ const ShortenUrlInputSection = () => {
     // visit https://github.com/1pt-co/1pt for more information
     const api = `https://csclub.uwaterloo.ca/~phthakka/1pt-express/addURL?long=${url}`;
 
+    setLoading(true);
     const response = await fetch(api, {
       method: "POST",
     });
@@ -66,6 +69,7 @@ const ShortenUrlInputSection = () => {
       short: `1pt.co/${res.short}`,
     };
     setShortenedUrls((prev) => [newShortenedUrl, ...prev]);
+    setLoading(false);
   }
 
   return (
@@ -96,7 +100,16 @@ const ShortenUrlInputSection = () => {
           onClick={validateUrlInput}
           className="mt-4 h-12 cta-btn rounded-md"
         >
-          Shorten It!
+          {loading ? (
+            <SyncLoader
+              size={7}
+              margin={3}
+              speedMultiplier={0.5}
+              color="#FFF"
+            />
+          ) : (
+            "Shorten It!"
+          )}
         </button>
       </form>
 
