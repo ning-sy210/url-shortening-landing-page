@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import Navbar from "./Navbar";
+
 const Header = () => {
+  const [showMobileNav, setShowMobileNav] = useState(false);
+
   return (
-    <header className="content flex justify-between items-center mt-10">
+    <header className="relative content flex justify-between items-center mt-10">
       <svg xmlns="http://www.w3.org/2000/svg" width="121" height="33">
         <path
           fill="#34313D"
@@ -11,7 +16,12 @@ const Header = () => {
         />
       </svg>
 
-      <FontAwesomeIcon icon={faBars} className="w-7 h-7 text-gray-400" />
+      <Navbar showOnMobile={showMobileNav} />
+      <FontAwesomeIcon
+        icon={faBars}
+        onClick={() => setShowMobileNav((prev) => !prev)}
+        className="w-7 h-7 text-gray-400"
+      />
     </header>
   );
 };
