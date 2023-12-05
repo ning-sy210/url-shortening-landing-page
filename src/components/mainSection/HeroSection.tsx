@@ -17,7 +17,7 @@ const HeroSection = () => {
       </p>
       <button
         type="button"
-        className="content justify-self-center mt-[1.875rem] px-10 py-[0.8125rem] rounded-full bg-primary-1 text-white font-bold tracking-wider"
+        className="content cta-btn justify-self-center mt-[1.875rem] px-10 py-[0.8125rem] rounded-full tracking-wider"
       >
         Get Started
       </button>
