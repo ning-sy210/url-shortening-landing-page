@@ -6,9 +6,9 @@ import ShortenedUrlHistory, {
 import UrlInput from "./UrlInput";
 
 const ShortenInputSection = () => {
-  // TODO: populate data from localStorage
+  const savedUrls = window.sessionStorage.getItem("shortenedUrls");
   const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlHistoryType[]>(
-    []
+    savedUrls ? JSON.parse(savedUrls) : []
   );
 
   return (

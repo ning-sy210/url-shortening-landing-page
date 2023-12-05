@@ -61,27 +61,35 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     const api = `https://csclub.uwaterloo.ca/~phthakka/1pt-express/addURL?long=${url}`;
 
     setLoading(true);
+    // TODO: handle error from fetch call
+    // TODO: abort fetch calls that take too long to resolve
     const response = await fetch(api, {
       method: "POST",
     });
     const res = await response.json();
     const newShortenedUrl: ShortenedUrlHistoryType = {
-      isNew: true,
       longUrl: urlInput,
       shortUrl: `1pt.co/${res.short}`,
     };
 
-    // TODO: populate data from localStorage
-    // TODO: handle error from fetch call
-    // TODO: abort fetch calls that take too long to resolve
+    const updatedShortenedUrls: ShortenedUrlHistoryType[] = [
+      newShortenedUrl,
+      ...shortenedUrls,
+    ];
+
     // set the previous shortened url (if exists) to be not new anymore
-    if (shortenedUrls.length > 0 && shortenedUrls[0].isNew) {
-      const prevUrl = { ...shortenedUrls[0] };
-      delete prevUrl.isNew;
-      setShortenedUrls((prev) => [newShortenedUrl, prevUrl, ...prev.slice(1)]);
-    } else {
-      setShortenedUrls((prev) => [newShortenedUrl, ...prev]);
+    if (updatedShortenedUrls.length > 1 && updatedShortenedUrls[1].isNew) {
+      delete updatedShortenedUrls[1].isNew;
     }
+
+    // populate data to sessionStorage (without isNew flag, because all items are considered old on page refresh)
+    window.sessionStorage.setItem(
+      "shortenedUrls",
+      JSON.stringify(updatedShortenedUrls)
+    );
+
+    updatedShortenedUrls[0].isNew = true;
+    setShortenedUrls(updatedShortenedUrls);
     setUrlInput("");
     setLoading(false);
   }
