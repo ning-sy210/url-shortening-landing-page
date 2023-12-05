@@ -38,6 +38,8 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
   }
 
   function validateUrlInput() {
+    if (loading) return;
+
     if (!urlInput) {
       setErrorMessage("Please add a link");
       return;
