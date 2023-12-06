@@ -5,7 +5,7 @@ import ShortenedUrlHistory, {
 } from "./ShortenedUrlHistory";
 import UrlInput from "./UrlInput";
 
-const ShortenInputSection = () => {
+const ShortenUrlSection = () => {
   const savedUrls = window.sessionStorage.getItem("shortenedUrls");
   const [shortenedUrls, setShortenedUrls] = useState<ShortenedUrlHistoryType[]>(
     savedUrls ? JSON.parse(savedUrls) : []
@@ -30,4 +30,4 @@ const ShortenInputSection = () => {
   );
 };
 
-export default ShortenInputSection;
+export default ShortenUrlSection;

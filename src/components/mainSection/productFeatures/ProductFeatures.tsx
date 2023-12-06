@@ -1,10 +1,10 @@
-import ShortenInputSection from "../shortenUrlSection/ShortenUrlSection";
+import ShortenUrlSection from "./shortenUrlSection/ShortenUrlSection";
 import FeatureList from "./FeatureList";
 
 const ProductFeatures = () => {
   return (
     <div className="full-width child-grid pb-20 bg-slate-100">
-      <ShortenInputSection />
+      <ShortenUrlSection />
 
       <section className="content">
         <h2 className="text-mobile-h2 text-neutral-3">Advanced Statistics</h2>

@@ -8,7 +8,7 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
   return (
     <nav
       className={`${hiddenClassname} absolute top-14 w-full rounded-[10px] bg-primary-2 text-white font-bold px-6 pt-[1.875rem] pb-10 
-      desktop:relative desktop:-top-[0.125rem] desktop:flex desktop:justify-between desktop:bg-transparent desktop:text-[0.9375rem] desktop:text-neutral-2 desktop:ml-[2.8125rem] desktop:p-0`}
+      desktop:relative desktop:-top-[0.125rem] desktop:ml-[2.8125rem] desktop:p-0 desktop:flex desktop:justify-between desktop:bg-transparent desktop:text-[0.9375rem] desktop:text-neutral-2`}
     >
       <ul className="grid gap-y-2 desktop:flex desktop:gap-x-[1.875rem]">
         <li>
