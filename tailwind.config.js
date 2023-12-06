@@ -57,6 +57,13 @@ export default {
           fontWeight: "700",
         },
       ],
+      "desktop-h1": [
+        "5.0625rem", // 81px
+        {
+          lineHeight: "5.6rem",
+          letterSpacing: "-0.18rem",
+        },
+      ],
     },
     fontWeight: {
       normal: "300",

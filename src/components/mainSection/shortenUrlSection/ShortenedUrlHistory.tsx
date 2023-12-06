@@ -33,7 +33,7 @@ const ShortenedUrlHistory = ({
           {longUrl}
         </p>
         {isNew && (
-          <span className="ml-4 px-[0.375rem] py-1 rounded-md bg-secondary-1 text-white text-[12px] font-bold leading-none">
+          <span className="ml-4 px-[0.375rem] py-1 rounded-md bg-secondary-1 text-white text-[0.75rem] font-bold leading-none">
             new!
           </span>
         )}
