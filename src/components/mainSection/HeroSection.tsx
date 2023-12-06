@@ -6,7 +6,7 @@ const HeroSection = () => {
       <img
         src={HeroImg}
         alt="working illustration"
-        className="col-start-2 col-span-full h-[20.5rem] object-cover object-left"
+        className="col-start-2 col-span-full h-[20.5rem] object-cover object-left tablet:content tablet:justify-self-center"
       />
       <h1 className="content mt-10 text-mobile-h1 text-neutral-3">
         More than just shorter links

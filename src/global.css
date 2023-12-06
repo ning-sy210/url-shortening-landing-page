@@ -20,6 +20,21 @@
       [full-width-end];
   }
 
+  @media screen and (min-width: 1440px) {
+    #root {
+      --desktop-side-padding: 1fr;
+
+      grid-template-columns:
+        [full-width-start]
+        var(--desktop-side-padding)
+        [content-start]
+        1108px
+        [content-end]
+        var(--desktop-side-padding)
+        [full-width-end];
+    }
+  }
+
   .child-grid {
     display: grid;
     grid-template-columns: subgrid;

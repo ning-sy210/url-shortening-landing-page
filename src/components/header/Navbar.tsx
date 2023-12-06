@@ -7,9 +7,10 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
 
   return (
     <nav
-      className={`${hiddenClassname} absolute top-14 w-full rounded-[10px] bg-primary-2 text-white font-bold px-6 pt-[1.875rem] pb-10`}
+      className={`${hiddenClassname} absolute top-14 w-full rounded-[10px] bg-primary-2 text-white font-bold px-6 pt-[1.875rem] pb-10 
+      desktop:relative desktop:-top-[2px] desktop:flex desktop:justify-between desktop:bg-transparent desktop:text-[15px] desktop:text-neutral-2 desktop:ml-[45px] desktop:p-0`}
     >
-      <ul className="grid gap-y-2">
+      <ul className="grid gap-y-2 desktop:flex desktop:gap-x-[1.875rem]">
         <li>
           <a href="">
             <p className="py-[0.5625rem]">Features</p>
@@ -27,9 +28,9 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
         </li>
       </ul>
 
-      <div className="my-5 h-[1px] bg-zinc-600"></div>
+      <div className="my-5 h-[1px] bg-zinc-600 desktop:hidden"></div>
 
-      <ul className="grid gap-y-4">
+      <ul className="grid gap-y-4 desktop:flex desktop:items-center desktop:gap-x-9">
         <li>
           <a href="">
             <p className="py-[0.5625rem]">Login</p>
@@ -37,7 +38,9 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
         </li>
         <li>
           <a href="">
-            <p className="cta-btn py-[0.5625rem] rounded-full">Sign Up</p>
+            <p className="cta-btn py-[0.5625rem] rounded-full desktop:px-6 desktop:py-[5px]">
+              Sign Up
+            </p>
           </a>
         </li>
       </ul>
