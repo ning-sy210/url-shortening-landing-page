@@ -12,7 +12,7 @@ const ShortenUrlSection = () => {
   );
 
   return (
-    <div className="full-width child-grid relative -top-20 mb-2 grid gap-y-6 desktop:-top-[84px]">
+    <div className="full-width child-grid relative -top-20 mb-2 grid gap-y-6 desktop:-top-[5.25rem] desktop:mb-11">
       <UrlInput
         shortenedUrls={shortenedUrls}
         setShortenedUrls={setShortenedUrls}
