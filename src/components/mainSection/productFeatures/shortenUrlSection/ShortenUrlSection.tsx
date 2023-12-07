@@ -12,20 +12,22 @@ const ShortenUrlSection = () => {
   );
 
   return (
-    <div className="full-width child-grid relative -top-20 mb-2 grid gap-y-6">
+    <div className="full-width child-grid relative -top-20 mb-2 grid gap-y-6 desktop:-top-[84px]">
       <UrlInput
         shortenedUrls={shortenedUrls}
         setShortenedUrls={setShortenedUrls}
       />
 
-      {shortenedUrls.map((url) => (
-        <ShortenedUrlHistory
-          key={url.shortUrl}
-          isNew={url.isNew}
-          longUrl={url.longUrl}
-          shortUrl={url.shortUrl}
-        />
-      ))}
+      <div className="content grid gap-y-[inherit] desktop:gap-y-4">
+        {shortenedUrls.map((url) => (
+          <ShortenedUrlHistory
+            key={url.shortUrl}
+            isNew={url.isNew}
+            longUrl={url.longUrl}
+            shortUrl={url.shortUrl}
+          />
+        ))}
+      </div>
     </div>
   );
 };

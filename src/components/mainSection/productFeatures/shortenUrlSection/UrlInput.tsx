@@ -100,7 +100,8 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     <form
       name="shorten-link-form"
       // TODO: bg-shorten-link (background-image) not working for some reason
-      className="content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid"
+      className="content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid 
+      desktop:relative desktop:flex desktop:justify-between gap-x-6 desktop:px-16 desktop:py-[3.25rem] desktop:text-[1.25rem]"
     >
       <input
         id="url-input"
@@ -110,10 +111,14 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
         value={urlInput}
         onChange={(e) => onUrlInputChange(e.target.value)}
         onKeyDown={onInputEnterKeyDown}
-        className={`h-12 rounded-md px-4 text-default ${invalidInputClassnames}`}
+        className={`h-12 rounded-md px-4 text-default ${invalidInputClassnames} 
+        desktop:h-auto desktop:flex-grow desktop:px-8 desktop:rounded-[10px] desktop:text-[1.25rem] desktop:invalid:px-7`}
       />
       {errorMessage && (
-        <span className="text-start italic text-red-400 text-[0.75rem] leading-7 -mb-[0.375rem]">
+        <span
+          className="text-start italic text-red-400 text-[0.75rem] leading-7 -mb-[0.375rem] 
+          desktop:absolute desktop:bottom-6 desktop:text-default desktop:tracking-[-0.02rem]"
+        >
           {errorMessage}
         </span>
       )}
@@ -121,7 +126,8 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       <button
         type="button"
         onClick={validateUrlInput}
-        className="mt-4 h-12 cta-btn rounded-md"
+        className="mt-4 h-12 cta-btn rounded-md 
+        desktop:mt-0 desktop:h-16 desktop:px-10 desktop:rounded-[10px]"
       >
         {loading ? (
           <SyncLoader size={7} margin={3} speedMultiplier={0.5} color="#FFF" />

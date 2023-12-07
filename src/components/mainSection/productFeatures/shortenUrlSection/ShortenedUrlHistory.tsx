@@ -24,11 +24,14 @@ const ShortenedUrlHistory = ({
   }
 
   return (
-    <div className="content grid rounded text-start bg-white">
-      <div className="flex items-center px-4 pt-3 pb-[0.375rem] border-b-[1px] border-solid border-gray-200">
+    <div className="grid rounded text-start bg-white desktop:flex desktop:justify-between desktop:pl-8 desktop:pr-6 desktop:py-4">
+      <div
+        className="flex items-center px-4 pt-3 pb-[0.375rem] border-b-[1px] border-solid border-gray-200
+        desktop:p-0 desktop:border-none"
+      >
         <p
           title={longUrl}
-          className="text-default overflow-hidden text-ellipsis"
+          className="text-default overflow-hidden text-ellipsis desktop:text-[1.25rem] desktop:tracking-[-0.01rem]"
         >
           {longUrl}
         </p>
@@ -38,12 +41,15 @@ const ShortenedUrlHistory = ({
           </span>
         )}
       </div>
-      <div className="px-4 pt-3 pb-4 grid">
-        <p className="text-default text-primary-1">{shortUrl}</p>
+      <div className="px-4 pt-3 pb-4 grid desktop:flex desktop:items-center desktop:p-0 desktop:gap-x-6">
+        <p className="text-default text-primary-1 desktop:text-[1.25rem] desktop:tracking-[-0.02rem]">
+          {shortUrl}
+        </p>
         <button
           type="button"
           onClick={onCopyLinkClick}
-          className={`mt-2 cta-btn text-mobile-p-sm font-bold py-[0.4375rem] rounded-md transition-colors duration-300 ${copiedStateClassnames}`}
+          className={`mt-2 cta-btn text-mobile-p-sm font-bold py-[0.4375rem] rounded-md transition-colors duration-300 ${copiedStateClassnames}
+          desktop:mt-0 desktop:w-[6.375rem] desktop:py-2`}
         >
           {copied ? "Copied!" : "Copy"}
         </button>
