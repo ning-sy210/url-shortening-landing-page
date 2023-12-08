@@ -7,6 +7,7 @@ export default {
   theme: {
     screens: {
       mobile: "375px",
+      tablet: "768px",
       desktop: "1440px",
     },
     fontFamily: {
@@ -54,6 +55,13 @@ export default {
         "0.9375rem", // 15px
         {
           fontWeight: "700",
+        },
+      ],
+      "desktop-h1": [
+        "5.0625rem", // 81px
+        {
+          lineHeight: "5.6rem",
+          letterSpacing: "-0.18rem",
         },
       ],
     },

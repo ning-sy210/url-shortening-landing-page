@@ -29,12 +29,15 @@ const features: FeatureCardType[] = [
 
 const FeatureList = () => {
   return (
-    <div className="mt-[5.5rem] grid">
+    <div className="mt-[5.5rem] grid desktop:mt-[6.125rem] desktop:flex desktop:items-center desktop:text-left">
       {features.map((feature, i) => (
         <Fragment key={feature.heading}>
           {/* card connector */}
           {i !== 0 && (
-            <div className="justify-self-center w-2 h-[5.75rem] bg-primary-1"></div>
+            <div
+              className="justify-self-center w-2 h-[5.75rem] bg-primary-1 
+              desktop:relative desktop:top-[1.4375rem] desktop:h-2 desktop:flex-grow"
+            ></div>
           )}
 
           <FeatureCard
@@ -53,10 +56,11 @@ const FeatureCard = ({ svgIcon, heading, desc }: FeatureCardType) => {
 
   return (
     <section
-      className={`relative grid justify-items-center bg-white rounded-md px-8 pt-[4.75rem] ${paddingBottom}`}
+      className={`relative grid justify-items-center bg-white rounded-md px-8 pt-[4.75rem] ${paddingBottom} 
+      desktop:justify-items-start desktop:max-w-[350px] desktop:pb-10 desktop:[&:nth-of-type(2)]:top-[2.6875rem] desktop:[&:nth-of-type(3)]:top-[5.4375rem]`}
     >
-      <div className="absolute -top-11 bg-primary-2 rounded-full w-[5.5rem] h-[5.5rem] grid place-items-center">
-        <img src={svgIcon} alt={`${heading} icon`} className="" />
+      <div className="absolute -top-11 bg-primary-2 rounded-full w-[5.5rem] h-[5.5rem] grid place-items-center desktop:left-8">
+        <img src={svgIcon} alt={`${heading} icon`} />
       </div>
       <h3 className="text-mobile-h3 text-neutral-3">{heading}</h3>
       <p className="mt-4 text-mobile-p-sm text-neutral-2">{desc}</p>
