@@ -44,7 +44,17 @@
   .cta-btn {
     @apply bg-primary-1;
     @apply font-bold;
+    @apply transition-colors;
+    @apply duration-200;
     color: white;
+  }
+
+  .cta-btn:hover {
+    background-color: hsl(180, 77%, 53%);
+  }
+
+  .cta-btn:active {
+    background-color: hsl(180, 68%, 36%);
   }
 }
 

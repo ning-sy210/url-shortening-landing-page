@@ -12,7 +12,7 @@ const ShortenedUrlHistory = ({
   shortUrl,
 }: ShortenedUrlHistoryType) => {
   const [copied, setCopied] = useState(false);
-  const copiedStateClassnames = copied ? "bg-primary-2" : "";
+  const copiedStateClassnames = copied ? "bg-primary-2 hover:bg-primary-2" : "";
 
   function onCopyLinkClick() {
     navigator.clipboard.writeText(shortUrl).then(() => {
@@ -48,7 +48,7 @@ const ShortenedUrlHistory = ({
         <button
           type="button"
           onClick={onCopyLinkClick}
-          className={`mt-2 cta-btn text-mobile-p-sm font-bold py-[0.4375rem] rounded-md transition-colors duration-300 ${copiedStateClassnames}
+          className={`mt-2 cta-btn text-mobile-p-sm font-bold py-[0.4375rem] rounded-md ${copiedStateClassnames}
           desktop:mt-0 desktop:w-[6.375rem] desktop:py-2`}
         >
           {copied ? "Copied!" : "Copy"}
