@@ -16,7 +16,7 @@ const HeroSection = () => {
 
       <section
         className="content mt-10 
-        desktop:mt-0 desktop:text-start desktop:min-w-[35rem]"
+        desktop:mt-0 desktop:text-start desktop:min-w-[35rem] desktop:max-w-[38rem]"
       >
         <h1 className="text-mobile-h1 text-neutral-3 desktop:text-desktop-h1">
           More than just shorter links
