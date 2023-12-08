@@ -13,17 +13,23 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
       <ul className="grid gap-y-2 desktop:flex desktop:gap-x-[1.875rem]">
         <li>
           <a href="">
-            <p className="py-[0.5625rem]">Features</p>
+            <p className="py-[0.5625rem] hover:text-neutral-4 transition-colors duration-200">
+              Features
+            </p>
           </a>
         </li>
         <li>
           <a href="">
-            <p className="py-[0.5625rem]">Pricing</p>
+            <p className="py-[0.5625rem] hover:text-neutral-4 transition-colors duration-200">
+              Pricing
+            </p>
           </a>
         </li>
         <li>
           <a href="">
-            <p className="py-[0.5625rem]">Resources</p>
+            <p className="py-[0.5625rem] hover:text-neutral-4 transition-colors duration-200">
+              Resources
+            </p>
           </a>
         </li>
       </ul>
@@ -33,7 +39,9 @@ const Navbar = ({ showOnMobile }: NavbarType) => {
       <ul className="grid gap-y-4 desktop:flex desktop:items-center desktop:gap-x-9">
         <li>
           <a href="">
-            <p className="py-[0.5625rem]">Login</p>
+            <p className="py-[0.5625rem] hover:text-neutral-4 transition-colors duration-200">
+              Login
+            </p>
           </a>
         </li>
         <li>
