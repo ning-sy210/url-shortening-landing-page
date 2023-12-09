@@ -59,41 +59,56 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
   }
 
   async function getShortenedUrlFor(url: string) {
-    // visit https://github.com/1pt-co/1pt for more information
-    const api = `https://csclub.uwaterloo.ca/~phthakka/1pt-express/addURL?long=${url}`;
+    // refer to https://rapidapi.com/BigLobster/api/url-shortener-service for more information
+    const api = "https://url-shortener-service.p.rapidapi.com/shorten";
+    const options = {
+      method: "POST",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+        "X-RapidAPI-Host": "url-shortener-service.p.rapidapi.com",
+      },
+      body: new URLSearchParams({
+        url: url,
+      }),
+    };
 
     setLoading(true);
     // TODO: handle error from fetch call
     // TODO: abort fetch calls that take too long to resolve
-    const response = await fetch(api, {
-      method: "POST",
-    });
-    const res = await response.json();
-    const newShortenedUrl: ShortenedUrlHistoryType = {
-      longUrl: urlInput,
-      shortUrl: `1pt.co/${res.short}`,
-    };
 
-    const updatedShortenedUrls: ShortenedUrlHistoryType[] = [
-      newShortenedUrl,
-      ...shortenedUrls,
-    ];
+    try {
+      const response = await fetch(api, options);
+      const res = await response.json();
 
-    // set the previous shortened url (if exists) to be not new anymore
-    if (updatedShortenedUrls.length > 1 && updatedShortenedUrls[1].isNew) {
-      delete updatedShortenedUrls[1].isNew;
+      const newShortenedUrl: ShortenedUrlHistoryType = {
+        longUrl: urlInput,
+        shortUrl: res.result_url,
+      };
+      const updatedShortenedUrls: ShortenedUrlHistoryType[] = [
+        newShortenedUrl,
+        ...shortenedUrls,
+      ];
+
+      // set the previous shortened url (if exists) to be not new anymore
+      if (updatedShortenedUrls.length > 1 && updatedShortenedUrls[1].isNew) {
+        delete updatedShortenedUrls[1].isNew;
+      }
+
+      // populate data to sessionStorage (without isNew flag, because all items are considered old on page refresh)
+      window.sessionStorage.setItem(
+        "shortenedUrls",
+        JSON.stringify(updatedShortenedUrls)
+      );
+
+      updatedShortenedUrls[0].isNew = true;
+      setShortenedUrls(updatedShortenedUrls);
+      setUrlInput("");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-
-    // populate data to sessionStorage (without isNew flag, because all items are considered old on page refresh)
-    window.sessionStorage.setItem(
-      "shortenedUrls",
-      JSON.stringify(updatedShortenedUrls)
-    );
-
-    updatedShortenedUrls[0].isNew = true;
-    setShortenedUrls(updatedShortenedUrls);
-    setUrlInput("");
-    setLoading(false);
   }
 
   return (
