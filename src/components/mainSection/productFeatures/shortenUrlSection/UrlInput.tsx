@@ -65,7 +65,7 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       method: "POST",
       headers: {
         "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+        "X-RapidAPI-Key": "bd9ecf8dbamsh35996e940b8a0e4p1c65cajsn10ff84307f5a",
         "X-RapidAPI-Host": "url-shortener-service.p.rapidapi.com",
       },
       body: new URLSearchParams({
