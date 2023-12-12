@@ -74,7 +74,6 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     };
 
     setLoading(true);
-    // TODO: handle error from fetch call
     // TODO: abort fetch calls that take too long to resolve
 
     try {
@@ -105,7 +104,7 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       setShortenedUrls(updatedShortenedUrls);
       setUrlInput("");
     } catch (error) {
-      console.log(error);
+      alert("Service currently unavailable. Please try again later.");
     } finally {
       setLoading(false);
     }
