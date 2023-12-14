@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import { ShortenedUrlHistoryType } from "./ShortenedUrlHistory";
 
@@ -10,18 +10,16 @@ type UrlInputType = {
 };
 
 const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
+  const controller = useRef<AbortController>(new AbortController());
+  const signal = useRef<AbortSignal>(controller.current.signal);
+
   const [loading, setLoading] = useState(false);
+  const [showAbortFetch, setShowAbortFetch] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const invalidInputClassnames = errorMessage
-    ? [
-        "invalid:px-[0.8125rem]",
-        "invalid:border-[0.1875rem]",
-        "invalid:border-solid border-red-400",
-        "invalid:placeholder:text-red-200",
-        "invalid:text-red-500",
-      ].join(" ")
+    ? "invalid:px-[0.8125rem invalid:border-[0.1875rem invalid:border-solid border-red-40 invalid:placeholder:text-red-20 invalid:text-red-500"
     : "";
 
   function onUrlInputChange(input: string) {
@@ -39,14 +37,12 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
 
   function validateUrlInput() {
     if (loading) return;
-
     if (!urlInput) {
       setErrorMessage("Please add a link");
       return;
     }
 
     const urlInputElement = document.getElementById("url-input");
-
     if (
       urlInputElement instanceof HTMLInputElement &&
       !urlInputElement.checkValidity()
@@ -54,7 +50,6 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       setErrorMessage("Please enter a valid URL");
       return;
     }
-
     getShortenedUrlFor(urlInput);
   }
 
@@ -62,10 +57,11 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     // refer to https://rapidapi.com/BigLobster/api/url-shortener-service for more information
     const api = "https://url-shortener-service.p.rapidapi.com/shorten";
     const options = {
+      signal: signal.current,
       method: "POST",
       headers: {
         "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+        "X-RapidAPI-Key": "bd9ecf8dbamsh35996e940b8a0e4p1c65cajsn10ff84307f5a",
         "X-RapidAPI-Host": "url-shortener-service.p.rapidapi.com",
       },
       body: new URLSearchParams({
@@ -74,12 +70,15 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     };
 
     setLoading(true);
-    // TODO: handle error from fetch call
-    // TODO: abort fetch calls that take too long to resolve
-
     try {
+      const fetchAbortTimeout = setTimeout(() => {
+        setErrorMessage("Hmmm... Request is taking unusually long...");
+        setShowAbortFetch(true);
+      }, 5000);
+
       const response = await fetch(api, options);
       const res = await response.json();
+      clearTimeout(fetchAbortTimeout);
 
       const newShortenedUrl: ShortenedUrlHistoryType = {
         longUrl: urlInput,
@@ -105,18 +104,31 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       setShortenedUrls(updatedShortenedUrls);
       setUrlInput("");
     } catch (error) {
-      console.log(error);
+      if (error instanceof DOMException) {
+        console.info(error.message);
+      } else {
+        console.error(error);
+        alert("Service currently unavailable. Please try again later.");
+      }
     } finally {
+      controller.current = new AbortController();
+      signal.current = controller.current.signal;
       setLoading(false);
+      setShowAbortFetch(false);
+      setErrorMessage("");
     }
+  }
+
+  function abortFetch() {
+    controller.current.abort();
   }
 
   return (
     <form
       name="shorten-link-form"
       // TODO: bg-shorten-link (background-image) not working for some reason
-      className="content bg-primary-2 bg-shorten-link px-6 py-6 rounded-xl grid 
-      desktop:relative desktop:flex desktop:justify-between gap-x-6 desktop:px-16 desktop:py-[3.25rem] desktop:text-[1.25rem]"
+      className="content bg-primary-2 bg-shorten-link-mobile px-6 py-6 rounded-xl grid 
+      desktop:bg-shorten-link-desktop desktop:relative desktop:flex desktop:justify-between gap-x-6 desktop:px-16 desktop:py-[3.25rem] desktop:text-[1.25rem]"
     >
       <input
         id="url-input"
@@ -140,12 +152,20 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
 
       <button
         type="button"
-        onClick={validateUrlInput}
-        className="mt-4 h-12 cta-btn rounded-md 
+        onClick={showAbortFetch ? abortFetch : validateUrlInput}
+        className="mt-4 h-12 flex justify-center items-center cta-btn rounded-md 
         desktop:mt-0 desktop:h-16 desktop:px-10 desktop:rounded-[10px]"
       >
         {loading ? (
-          <SyncLoader size={7} margin={3} speedMultiplier={0.5} color="#FFF" />
+          <span className="flex items-center gap-x-4">
+            {showAbortFetch && "Cancel"}
+            <SyncLoader
+              size={7}
+              margin={3}
+              speedMultiplier={0.5}
+              color="#FFF"
+            />
+          </span>
         ) : (
           "Shorten It!"
         )}

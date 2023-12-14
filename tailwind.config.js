@@ -87,7 +87,10 @@ export default {
       },
       backgroundImage: {
         // TODO: find out why below is not working
-        "shorten-link": "url('./src/assets/images/bg-shorten-mobile.svg')",
+        "shorten-link-mobile": "url('./assets/images/bg-shorten-mobile.svg')",
+        "shorten-link-desktop": "url('./assets/images/bg-shorten-desktop.svg')",
+        "boost-mobile": "url('./assets/images/bg-boost-mobile.svg')",
+        "boost-desktop": "url('./assets/images/bg-boost-desktop.svg')",
       },
     },
   },
