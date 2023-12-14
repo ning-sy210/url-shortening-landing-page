@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import { ShortenedUrlHistoryType } from "./ShortenedUrlHistory";
 
@@ -10,7 +10,11 @@ type UrlInputType = {
 };
 
 const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
+  const controller = useRef<AbortController>(new AbortController());
+  const signal = useRef<AbortSignal>(controller.current.signal);
+
   const [loading, setLoading] = useState(false);
+  const [showAbortFetch, setShowAbortFetch] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -62,6 +66,7 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     // refer to https://rapidapi.com/BigLobster/api/url-shortener-service for more information
     const api = "https://url-shortener-service.p.rapidapi.com/shorten";
     const options = {
+      signal: signal.current,
       method: "POST",
       headers: {
         "content-type": "application/x-www-form-urlencoded",
@@ -74,11 +79,15 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
     };
 
     setLoading(true);
-    // TODO: abort fetch calls that take too long to resolve
-
     try {
+      const fetchAbortTimeout = setTimeout(() => {
+        setErrorMessage("Hmmm... Request is taking unusually long...");
+        setShowAbortFetch(true);
+      }, 5000);
+
       const response = await fetch(api, options);
       const res = await response.json();
+      clearTimeout(fetchAbortTimeout);
 
       const newShortenedUrl: ShortenedUrlHistoryType = {
         longUrl: urlInput,
@@ -104,10 +113,23 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
       setShortenedUrls(updatedShortenedUrls);
       setUrlInput("");
     } catch (error) {
-      alert("Service currently unavailable. Please try again later.");
+      if (error instanceof DOMException) {
+        console.info(error.message);
+      } else {
+        console.error(error);
+        alert("Service currently unavailable. Please try again later.");
+      }
     } finally {
+      controller.current = new AbortController();
+      signal.current = controller.current.signal;
       setLoading(false);
+      setShowAbortFetch(false);
+      setErrorMessage("");
     }
+  }
+
+  function abortFetch() {
+    controller.current.abort();
   }
 
   return (
@@ -139,12 +161,20 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
 
       <button
         type="button"
-        onClick={validateUrlInput}
-        className="mt-4 h-12 cta-btn rounded-md 
+        onClick={showAbortFetch ? abortFetch : validateUrlInput}
+        className="mt-4 h-12 flex justify-center items-center cta-btn rounded-md 
         desktop:mt-0 desktop:h-16 desktop:px-10 desktop:rounded-[10px]"
       >
         {loading ? (
-          <SyncLoader size={7} margin={3} speedMultiplier={0.5} color="#FFF" />
+          <span className="flex items-center gap-x-4">
+            {showAbortFetch && "Cancel"}
+            <SyncLoader
+              size={7}
+              margin={3}
+              speedMultiplier={0.5}
+              color="#FFF"
+            />
+          </span>
         ) : (
           "Shorten It!"
         )}
