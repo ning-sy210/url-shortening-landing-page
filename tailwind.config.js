@@ -86,11 +86,10 @@ export default {
         subgrid: "subgrid",
       },
       backgroundImage: {
-        // TODO: find out why below is not working
-        "shorten-link-mobile": "url('./assets/images/bg-shorten-mobile.svg')",
-        "shorten-link-desktop": "url('./assets/images/bg-shorten-desktop.svg')",
-        "boost-mobile": "url('./assets/images/bg-boost-mobile.svg')",
-        "boost-desktop": "url('./assets/images/bg-boost-desktop.svg')",
+        "shorten-link-mobile": "url('/images/bg-shorten-mobile.svg')",
+        "shorten-link-desktop": "url('/images/bg-shorten-desktop.svg')",
+        "boost-mobile": "url('/images/bg-boost-mobile.svg')",
+        "boost-desktop": "url('/images/bg-boost-desktop.svg')",
       },
     },
   },

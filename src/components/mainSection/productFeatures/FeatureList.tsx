@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import BrandRecognitionIcon from "../../../assets/images/icon-brand-recognition.svg";
-import DetailedRecordsIcon from "../../../assets/images/icon-detailed-records.svg";
-import FullyCustomizableIcon from "../../../assets/images/icon-fully-customizable.svg";
+import BrandRecognitionIcon from "/icons/icon-brand-recognition.svg";
+import DetailedRecordsIcon from "/icons/icon-detailed-records.svg";
+import FullyCustomizableIcon from "/icons/icon-fully-customizable.svg";
 
 type FeatureCardType = {
   svgIcon: string;
