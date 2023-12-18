@@ -18,7 +18,7 @@ const ShortenUrlSection = () => {
         setShortenedUrls={setShortenedUrls}
       />
 
-      <div className="content grid gap-y-[inherit] desktop:gap-y-4">
+      <div className="content empty:hidden grid gap-y-[inherit] desktop:gap-y-4">
         {shortenedUrls.map((url) => (
           <ShortenedUrlHistory
             key={url.shortUrl}
