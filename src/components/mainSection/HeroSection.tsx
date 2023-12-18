@@ -1,4 +1,4 @@
-import HeroImg from "../../assets/images/illustration-working.svg";
+import HeroImg from "/images/illustration-working.svg";
 
 const HeroSection = () => {
   return (
