@@ -13,7 +13,7 @@ const Header = () => {
         xmlns="http://www.w3.org/2000/svg"
         width="121"
         height="33"
-        className="desktop:min-w-min"
+        className="tablet:min-w-min"
       >
         <path
           fill="#34313D"
@@ -25,7 +25,7 @@ const Header = () => {
       <FontAwesomeIcon
         icon={faBars}
         onClick={() => setShowMobileNav((prev) => !prev)}
-        className="w-7 h-7 text-gray-400 desktop:hidden"
+        className="w-7 h-7 text-gray-400 tablet:hidden"
       />
     </header>
   );
