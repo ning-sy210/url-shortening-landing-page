@@ -19,7 +19,7 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const invalidInputClassnames = errorMessage
-    ? "invalid:px-[0.8125rem invalid:border-[0.1875rem invalid:border-solid border-red-40 invalid:placeholder:text-red-20 invalid:text-red-500"
+    ? "invalid:px-[0.8125rem] invalid:border-[0.1875rem] invalid:border-solid border-red-400 invalid:placeholder:text-red-200 invalid:text-red-500"
     : "";
 
   function onUrlInputChange(input: string) {
