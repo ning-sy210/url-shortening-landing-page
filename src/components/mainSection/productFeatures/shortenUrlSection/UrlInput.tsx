@@ -126,8 +126,7 @@ const UrlInput = ({ shortenedUrls, setShortenedUrls }: UrlInputType) => {
   return (
     <form
       name="shorten-link-form"
-      // TODO: bg-shorten-link (background-image) not working for some reason
-      className="content bg-primary-2 bg-shorten-link-mobile px-6 py-6 rounded-xl grid 
+      className="content bg-primary-2 bg-shorten-link-mobile bg-no-repeat bg-right-top px-6 py-6 rounded-xl grid 
       desktop:bg-shorten-link-desktop desktop:relative desktop:flex desktop:justify-between gap-x-6 desktop:px-16 desktop:py-[3.25rem] desktop:text-[1.25rem]"
     >
       <input
